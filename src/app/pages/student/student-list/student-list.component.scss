@@ -1,0 +1,21 @@
+.mat-table-container {
+    margin-top: 24px;
+    overflow-x: auto;
+}
+
+.mat-elevation-z8 {
+    width: 100%;
+}
+
+.header {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.text-end {
+    display: flex;
+    justify-content: end;
+    margin-top: 15px;
+    gap: 8px;
+}

@@ -1,0 +1,90 @@
+<form [formGroup]="studentForm" (ngSubmit)="onSubmit()" class="example-form">
+    <div class="header">
+        <h1>Student Form</h1>
+    </div>
+
+    <div class="form-grid">
+        <div>
+            <mat-form-field appearance="outline" class="form-field">
+                <mat-label>First Name</mat-label>
+                <input matInput formControlName="firstName" placeholder="Enter your first name">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="outline" class="form-field">
+                <mat-label>Last Name</mat-label>
+                <input matInput formControlName="lastName" placeholder="Enter your last name">
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="form-grid">
+        <div>
+            <mat-form-field appearance="outline" class="form-field">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email" placeholder="Enter your email">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="outline" class="form-field">
+                <mat-label>Phone Number</mat-label>
+                <input matInput type="number" formControlName="phoneNumber" placeholder="Enter your number">
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="form-grid">
+        <div class="form-radio-group">
+            <mat-label>Gender</mat-label>
+            <mat-radio-group formControlName="gender" class="radio-group">
+                <mat-radio-button value="male">Male</mat-radio-button>
+                <mat-radio-button value="female">Female</mat-radio-button>
+            </mat-radio-group>
+        </div>
+        <div class="form-radio-group" formArrayName="skills">
+            <mat-label>Choose your skills</mat-label>
+            <div class="radio-group">
+                <ng-container *ngFor="let s of skillsArray">
+                    <mat-checkbox [checked]="skills.value.includes(s)"
+                        (change)="toggleSkill(s, $event.checked)">{{s}}</mat-checkbox>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-grid">
+        <div>
+            <mat-form-field appearance="outline" class="form-field">
+                <mat-label>Address</mat-label>
+                <textarea matInput formControlName="address" placeholder="Ex. 100 Main St"></textarea>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="form-grid">
+        <div>
+            <mat-form-field appearance="outline" class="form-field">
+                <mat-label>City</mat-label>
+                <input matInput formControlName="city" placeholder="Ex. San Francisco">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="outline" class="form-field">
+                <mat-label>State</mat-label>
+                <input matInput formControlName="state" placeholder="Ex. California">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="outline" class="form-field">
+                <mat-label>Postal Code</mat-label>
+                <input matInput formControlName="postalCode" placeholder="Ex. 94105">
+                <mat-hint align="end">{{ studentForm.get('postalCode')?.value.length }} / 5</mat-hint>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="text-end">
+        <button mat-flat-button color="accent" routerLink="/students/details">Cancel</button>
+        <button mat-raised-button color="primary" [disabled]="!studentForm.valid">{{id?'Update':'Submit'}}</button>
+    </div>
+</form>
